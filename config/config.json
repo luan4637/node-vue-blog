@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "expressapp_user",
+    "password": "expressapp_password",
+    "database": "expressapp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "expressapp_user",
+    "password": "expressapp_password",
+    "database": "expressapp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "expressapp_user",
+    "password": "expressapp_password",
+    "database": "expressapp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
