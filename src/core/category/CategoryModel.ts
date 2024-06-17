@@ -19,6 +19,9 @@ export class CategoryModel extends BaseEntity
     @Column({ nullable: true })
     image: string;
 
+    @Column({ default: true })
+    showInNav: boolean = true;
+
     @CreateDateColumn()
     createdAt: Date;
 

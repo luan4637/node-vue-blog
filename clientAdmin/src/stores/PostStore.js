@@ -49,12 +49,25 @@ export const usePostStore = defineStore('postStore', {
                 _this.post = response.data;
             });
         },
-        submitPost(postData) {
+        submitPost(postData, file) {
             let URL = API_URL + '/post/create';
             if (postData.id) {
                 URL = API_URL + '/post/update/' + postData.id;
             }
-            axios.post(URL, postData).then(function(response) {
+            
+            let formData = new FormData();
+            for (let key in postData) {
+                let fieldData = postData[key]
+                if (typeof fieldData === 'object') {
+                    fieldData = JSON.stringify(fieldData);
+                }
+                formData.append(key, fieldData);
+            }
+            if (file) {
+                formData.append('file', file); 
+            }
+            
+            axios.post(URL, formData).then(function(response) {
                 router.push({ name: 'home' })
             });
         },

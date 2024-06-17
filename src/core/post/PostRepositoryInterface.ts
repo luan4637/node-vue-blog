@@ -6,4 +6,6 @@ export interface PostRepositoryInterface extends GenericRepositoryInterface<Post
     getLatest(total: number): Promise<PostModel[]>;
 
     getFeature(total: number): Promise<PostModel[]>;
+
+    findByIdIncludeUser(id: number): Promise<PostModel|null>;
 }

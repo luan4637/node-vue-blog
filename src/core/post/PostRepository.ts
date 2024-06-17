@@ -30,4 +30,13 @@ export class PostRepository extends GenericRepository<PostModel> implements Post
             take: total
         });
     }
+
+    findByIdIncludeUser(id: number): Promise<PostModel|null> {
+        return this.repository.findOne({
+            relations: ['user', 'categories'],
+            where: {
+                id: id
+            }
+        });
+    }
 }

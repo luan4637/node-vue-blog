@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
-
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
+import { PostModel } from "../post/PostModel";
 
 @Entity()
 export class UserModel extends BaseEntity
@@ -27,4 +27,7 @@ export class UserModel extends BaseEntity
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @OneToMany(() => PostModel, (post) => post.user)
+    posts: PostModel[];
 }

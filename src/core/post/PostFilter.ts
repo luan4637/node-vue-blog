@@ -30,11 +30,6 @@ export class PostFilter implements FilterInterface
         return this.query.position;
     }
 
-    getOwnerId(): number
-    {
-        return this.query.ownerId;
-    }
-
     getPage(): number
     {
         return this.query.page;
@@ -62,6 +57,7 @@ export class PostFilter implements FilterInterface
         }
 
         const findOptions: FindManyOptions = {
+            relations: ['user', 'categories'],
             take: limit,
             skip: (page - 1) * limit,
             where: whereClauses
@@ -82,7 +78,6 @@ interface PostFilterQuery {
     content: string;
     published: boolean;
     position: string;
-    ownerId: number;
     page: number;
     limit: number;
 }

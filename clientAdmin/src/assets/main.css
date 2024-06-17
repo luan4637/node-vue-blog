@@ -51,6 +51,7 @@ ul {
 }
 .navbar-brand {
     padding: 0.3em 0.5em;
+    font-size: 1.1em;
 }
 .navbar-brand.router-link-active {
     background-color: #eee;

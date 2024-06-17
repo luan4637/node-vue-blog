@@ -14,7 +14,7 @@ export const useCategoryStore = defineStore('categoryStore', {
     }),
     actions: {
         getCategories(skip, limit) {
-            let URL = API_URL + "/category?skip=" + (skip ?? 0) + "&limit=" + (limit ?? 10);
+            let URL = API_URL + "/category?skip=" + (skip ?? 0) + "&limit=" + (limit ?? 10) + "&showInNav=1";
             const _this = this;
             this.loading = true;
             axios.get(URL).then(function(response) {

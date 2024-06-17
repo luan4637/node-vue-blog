@@ -20,6 +20,11 @@ export class CategoryFilter implements FilterInterface
         return this.query.description;
     }
 
+    getShowInNav(): boolean
+    {
+        return this.query.showInNav;
+    }
+
     getPage(): number
     {
         return this.query.page;
@@ -42,6 +47,9 @@ export class CategoryFilter implements FilterInterface
         if (this.getDescription() !== undefined) {
             whereClauses.description = Like(`%${this.getDescription()}%`);
         }
+        if (this.getShowInNav() !== undefined) {
+            whereClauses.showInNav = this.getShowInNav();
+        }
 
         const findOptions: FindManyOptions = {
             take: limit,
@@ -55,12 +63,14 @@ export class CategoryFilter implements FilterInterface
 
 interface OperatorWhereClauses {
     name: FindOperator<string>,
-    description: FindOperator<string>
+    description: FindOperator<string>,
+    showInNav: boolean
 }
 
 interface CategoryFilterQuery {
     name: string;
     description: string;
+    showInNav: boolean;
     page: number;
     limit: number;
 }

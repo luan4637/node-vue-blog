@@ -22,7 +22,7 @@ export const AppDataSource = new DataSource({
         UserModel,
         CategoryModel
     ],
-    logging: true,
+    // logging: true,
     synchronize: true,
 });
 

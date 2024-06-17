@@ -6,7 +6,15 @@ import Navigation from './components/Navigation.vue';
 <template>
     <div class="header">
         <div class="container">
-            <RouterLink class="logo" to="/"><img src="./assets/logo.svg" /></RouterLink>
+            <div class="header-logo">
+                <RouterLink to="/"><img src="./assets/logo.svg" /></RouterLink>
+            </div>
+            <div class="header-form">
+                <div class="header-form-search">
+                    <input type="text" placeholder="Search"/>
+                    <button type="button">Search</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="navigation-wrapper">

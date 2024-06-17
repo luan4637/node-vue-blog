@@ -84,18 +84,30 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>Picture</th>
                         <th>Title</th>
+                        <th>Categories</th>
                         <th>Published</th>
                         <th>Position</th>
+                        <th class="text-nowrap">Created By</th>
                         <th>Created Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="post in posts">
-                        <td class="align-middle">{{ post.title }}</td>
+                        <td>
+                            <img v-if="post.picture" :src="post.picture" class="w-100" />
+                        </td>
+                        <td>{{ post.title }}</td>
+                        <td class="align-middle">
+                            <ul v-for="category in post.categories" class="list-group">
+                                <li class="list-group-item mb-1">{{ category.name }}</li>
+                            </ul>
+                        </td>
                         <td class="align-middle">{{ post.published }}</td>
                         <td class="align-middle">{{ post.position }}</td>
+                        <td class="align-middle"><span v-if="post.user" class="text-nowrap">{{ post.user.firstName }} {{ post.user.lastName }}</span></td>
                         <td class="align-middle">{{ post.createdAt }}</td>
                         <td>
                             <RouterLink :to="{ name: 'postEdit', params: { id: post.id }}" class="btn btn-primary">Edit</RouterLink>

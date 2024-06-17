@@ -85,27 +85,27 @@ export default {
     <div class="pagination-wrapper">
         <ul class="pagination justify-content-center mt-4">
             <li class="page-item">
-                <a class="page-link" :href="'#/' + $route.name" @click="onClickFirstPage" :disabled="isInFirstPage">
+                <a class="page-link" :href="'#/' + ($route.name == 'home' ? '' : $route.name)" @click="onClickFirstPage" :disabled="isInFirstPage">
                     First
                 </a>
             </li>
             <li>
-                <a class="page-link" :href="'#/' + $route.name" @click="onClickPreviousPage" :disabled="isInFirstPage">
+                <a class="page-link" :href="'#/' + ($route.name == 'home' ? '' : $route.name)" @click="onClickPreviousPage" :disabled="isInFirstPage">
                     Previous
                 </a>
             </li>
             <li v-for="page in pages" :key="page.name">
-                <a class="page-link" :href="'#/' + $route.name" @click="onClickPage(page.name)" :disabled="page.isDisabled">
+                <a class="page-link" :href="'#/' + ($route.name == 'home' ? '' : $route.name)" @click="onClickPage(page.name)" :disabled="page.isDisabled">
                     {{ page.name }}
                 </a>
             </li>
             <li>
-                <a class="page-link" :href="'#/' + $route.name" @click="onClickNextPage" :disabled="isInLastPage">
+                <a class="page-link" :href="'#/' + ($route.name == 'home' ? '' : $route.name)" @click="onClickNextPage" :disabled="isInLastPage">
                     Next
                 </a>
             </li>
             <li>
-                <a class="page-link" :href="'#/' + $route.name" @click="onClickLastPage" :disabled="isInLastPage">
+                <a class="page-link" :href="'#/' + ($route.name == 'home' ? '' : $route.name)" @click="onClickLastPage" :disabled="isInLastPage">
                     Last
                 </a>
             </li>

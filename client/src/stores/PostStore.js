@@ -7,21 +7,49 @@ export const usePostStore = defineStore('postStore', {
     state: () => ({
         loading: false,
         total: 0,
-        skip: 0,
-        limit: 16,
+        page: 1,
+        limit: 10,
         posts: ref([]),
+        featurePosts: ref([]),
+        popularPosts: ref([]),
         post: ref({}),
     }),
     actions: {
-        getPosts(skip, limit) {
-            let URL = API_URL + "/post?skip=" + (skip ?? 0) + "&limit=" + (limit ?? 10);
+        getPosts(filter, page, limit) {
+            let queryFilter = '';
+            for (let key in filter) {
+                if (filter[key] !== undefined && filter[key] !== '') {
+                    queryFilter += '&' + key + '=' + filter[key];
+                }
+            }
+
+            let URL = API_URL + "/post?page=" + (page ?? this.page) + "&limit=" + (limit ?? this.limit) + queryFilter;
             const _this = this;
             this.loading = true;
             axios.get(URL).then(function(response) {
                 _this.loading = false;
                 _this.posts = response.data.data;
                 _this.total = response.data.total;
-                _this.skip = 0;
+            });
+        },
+        getFeaturePosts() {
+            let URL = API_URL + "/post?position=FEATURE&page=1&limit=3";
+            const _this = this;
+            this.loading = true;
+            axios.get(URL).then(function(response) {
+                _this.loading = false;
+                _this.featurePosts = response.data.data;
+                _this.total = response.data.total;
+            });
+        },
+        getPopularPosts() {
+            let URL = API_URL + "/post?position=POPULAR&page=1&limit=5";
+            const _this = this;
+            this.loading = true;
+            axios.get(URL).then(function(response) {
+                _this.loading = false;
+                _this.popularPosts = response.data.data;
+                _this.total = response.data.total;
             });
         },
         getPost(id) {
